@@ -1,0 +1,24 @@
+{
+  "scaffolds": [
+    {
+      "name":"待建设",
+      "address":"待建设",
+      "desc":"中后台脚手架"
+    }
+  ],
+  "projects": [
+    {
+      "name": "待建设",
+      "address": "",
+      "desc": "待建设"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "待建设",
+      "address": "xxdd",
+      "desc": "中后台公用代码",
+      "defaultBranch": "dev"
+    }
+  ]
+}
