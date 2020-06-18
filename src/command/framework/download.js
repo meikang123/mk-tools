@@ -5,19 +5,18 @@
 const { settings, downloadFramework } = require('../../lib');
 const jsonFile = require('jsonfile');
 const path = require('path');
-// const packageConfig = require('./package.json');
 
 module.exports = () => {
   const currentPath = process.cwd();
   const projectPackage = jsonFile.readFileSync(path.join(currentPath, './package.json'));
-  const { framework: {name, branch, tag, address} } = projectPackage;
-  
-  const framework = settings.getFrameworkByName(name);
+  const { framework } = projectPackage;
 
   if (!framework) {
-    console.error(`---framework 未找到，请检查 ${name} 是否存在 !`);
+    console.error(`没找到公用代码`);
     return;
   }
-  
+
+  const {name, branch, tag, address} = framework;
+  // const framework = settings.getFrameworkByName(name);
   downloadFramework(address, branch, tag);
 };             

@@ -6,39 +6,40 @@ let { getScaffoldByName, getScaffolds } = require('../../lib/settings');
  * @description 根据用户选择的脚手架初始化项目
  * @returns
  */
-function init() {
+function init(address) {
 
-  let scaffolds = getScaffolds();
+  // let scaffolds = getScaffolds();
 
-  if (!scaffolds) {
-    return;
-  }
+  // if (!scaffolds) {
+  //   return;
+  // }
 
-  let scaffoldChoices = scaffolds.map((item) => {
-    return item.name;
-  });
+  // let scaffoldChoices = scaffolds.map((item) => {
+  //   return item.name;
+  // });
 
-  scaffoldChoices = scaffoldChoices.concat(['exit']);
+  // scaffoldChoices = scaffoldChoices.concat(['exit']);
   
-  const questions = [
-    {
-      type: 'list',
-      message: 'your scaffold: ',
-      name: 'scaffold',
-      choices: scaffoldChoices,
-    },
-  ];
+  // const questions = [
+  //   {
+  //     type: 'list',
+  //     message: 'your scaffold: ',
+  //     name: 'scaffold',
+  //     choices: scaffoldChoices,
+  //   },
+  // ];
 
-  inquirer.prompt(questions).then((answers) => {
+  // inquirer.prompt(questions).then((answers) => {
    
-    if (answers.scaffold === 'exit') {
-      console.log('bye');
-      process.exit();
-    }
-    let scaffold = getScaffoldByName(answers.scaffold);
+  //   if (answers.scaffold === 'exit') {
+  //     console.log('bye');
+  //     process.exit();
+  //   }
+  //   let scaffold = getScaffoldByName(answers.scaffold);
     
-    initProject(scaffold.address); 
-  });
+  //   initProject(scaffold.address); 
+  // });
+  initProject(address); 
 }
 
 module.exports = init;
