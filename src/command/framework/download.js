@@ -16,6 +16,7 @@ module.exports = () => {
     return;
   }
 
+  const { address, branch, tag } = framework;
   
   // const framework = settings.getFrameworkByName(name);
   downloadFramework(address, branch, tag);
