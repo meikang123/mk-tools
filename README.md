@@ -4,10 +4,10 @@ cli(脚手架)  工具
 安装方式
 ```shell
 # global
-npm install giant-cli -g
+npm install giant-tools -g
 
 # local
-npm install giant-cli -D
+npm install giant-tools -D
 ```
 
 
