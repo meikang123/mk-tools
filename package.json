@@ -1,6 +1,6 @@
 {
   "name": "giant-tools",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "giant scaffold cli",
   "main": "index.js",
   "bin": {
