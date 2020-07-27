@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 const program = require('commander');
-const { init, listScaffolds, publish, downloadFramework, listFrameworks, clone } = require('./src/command');
+const { init, listScaffolds, release, downloadFramework, listFrameworks, clone } = require('./src/command');
 const chalk = require('chalk');
 const pkg = require('./package.json');
 
@@ -12,8 +12,8 @@ program.command('init <scaffoldaddress>').action((scaffoldaddress) => {
   init(scaffoldaddress);
 });
 
-program.command('publish <environment>').action((branch) => {
-  publish(branch);
+program.command('release <environment>').action((branch) => {
+  release(branch);
 });
 
 program.command('list').action(() => {
@@ -42,7 +42,7 @@ program.on('--help', () => {
   console.log(`${pkg.version} 使用举例:`);
   console.log('');
   console.log('giant init  //通过脚手架初始化项目');
-  console.log('giant publish //发布当前项目');
+  console.log('giant release //发布当前项目');
   console.log('giant download //下载公用代码');
   console.log('giant clone //联调项目进公用代码项目坞');
 

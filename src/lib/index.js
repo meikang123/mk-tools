@@ -3,7 +3,7 @@
  */
 let initProject = require('./initProject.js');
 let settings = require('./settings.js');
-let publishHandle = require('./publishHandle.js');
+let releaseHandle = require('./releaseHandle.js');
 let downloadFramework = require('./downloadFramework.js');
 let cloneProject = require('./cloneProject.js');
 
@@ -12,5 +12,5 @@ module.exports = {
   settings,
   downloadFramework,
   cloneProject,
-  publishHandle
+  releaseHandle
 };

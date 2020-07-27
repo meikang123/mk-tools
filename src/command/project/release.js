@@ -1,17 +1,17 @@
 /*
 * 发布
 * */
-const { publishHandle } = require('../../lib');
+const { releaseHandle } = require('../../lib');
 const jsonFile = require('jsonfile');
 const path = require('path');
 
 module.exports = (branch) => {
   const currentPath = process.cwd();
   const projectPackage = jsonFile.readFileSync(path.join(currentPath, './package.json'));
-  const { publish, name } = projectPackage;
+  const { release, name } = projectPackage;
 
-  if (!publish) {
-    console.error(`请在package.json配置publish相关数据`);
+  if (!release) {
+    console.error(`请在package.json配置release相关数据`);
     return;
   }
 
@@ -20,7 +20,7 @@ module.exports = (branch) => {
     return;
   }
 
-  const { address, dirname } = publish;
+  const { address, dirname } = release;
 
-  publishHandle(address, branch, dirname, name);
+  releaseHandle(address, branch, dirname, name);
 };
