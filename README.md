@@ -58,7 +58,7 @@ package.json
     "build:test": "giant-cli-service build --mode st",
     "release:test": "giant release test"
   },
-  "publish": {
+  "release": {
     "address": "qqdz@192.168.39.184:tools/release_package.git",
     "dirname": "dist"
   }
