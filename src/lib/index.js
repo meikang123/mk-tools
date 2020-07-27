@@ -3,6 +3,7 @@
  */
 let initProject = require('./initProject.js');
 let settings = require('./settings.js');
+let publishHandle = require('./publishHandle.js');
 let downloadFramework = require('./downloadFramework.js');
 let cloneProject = require('./cloneProject.js');
 
@@ -11,4 +12,5 @@ module.exports = {
   settings,
   downloadFramework,
   cloneProject,
+  publishHandle
 };

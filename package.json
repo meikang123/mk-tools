@@ -16,6 +16,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "commander": "^2.19.0",
+    "compressing": "^1.5.1",
     "decompress": "^4.2.0",
     "filenamify": "^2.1.0",
     "fs-extra": "^9.0.1",
@@ -23,6 +24,7 @@
     "inquirer": "^6.2.2",
     "jsonfile": "^5.0.0",
     "mkdirp": "^0.5.1",
+    "moment": "^2.27.0",
     "ora": "^3.1.0"
   },
   "author": "stone",
@@ -30,5 +32,9 @@
   "engines": {
     "node": ">= 12.16.1",
     "npm": ">= 6.13.2"
+  },
+  "publish": {
+    "address": "qqdz@192.168.39.184:tools/release_package.git",
+    "dirname": "dist"
   }
 }
