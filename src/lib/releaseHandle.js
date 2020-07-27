@@ -70,7 +70,7 @@ module.exports = async (address, branch, dirname, name) => {
     }
 
     return new Promise((suc) => {
-      compressing.zip.compressDir(`./${dirname}`, zipName)
+      compressing.zip.compressDir(`./${dirname || 'dist'}`, zipName)
         .then(() => {
           console.log('file zip success');
           suc(true);
