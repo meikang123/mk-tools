@@ -43,6 +43,29 @@ package.json
 ...
 ```
 
+项目根目录下执行，发布项目到资源包
+```shell
+# 发布项目到资源包
+giant release
+```
+业务项目中发布代码指定方式
+
+package.json
+```javascript
+...
+{
+  "scripts": {
+    "build:test": "giant-cli-service build --mode st",
+    "release:test": "giant release test"
+  },
+  "publish": {
+    "address": "qqdz@192.168.39.184:tools/release_package.git",
+    "dirname": "dist"
+  }
+}
+...
+```
+
 公用代码项目根目录下执行，Clone 业务项目到公用代码项目进行联调开发
 ```shell
 # 同步指定业务代码
