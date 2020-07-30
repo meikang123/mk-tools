@@ -4,13 +4,13 @@
 let initProject = require('./initProject.js');
 let settings = require('./settings.js');
 let releaseHandle = require('./releaseHandle.js');
-let downloadFramework = require('./downloadFramework.js');
+let download = require('./download.js');
 let cloneProject = require('./cloneProject.js');
 
 module.exports = {
   initProject,
   settings,
-  downloadFramework,
+  download,
   cloneProject,
   releaseHandle
 };
