@@ -74,8 +74,18 @@ module.exports = (address, branch) => {
     if (fs.existsSync('./framework_temp_')) {
       execCmd(cmds, 'rm_dir'); 
     }
-    
   };
+
+  async function copyFrameworkPublic () {
+    try {
+      console.log('> copy frameworkpublic');
+      await fs.copy('./src/framework/public/static/framework', './public/static/framework');
+    }catch(e){
+      console.error(e);
+    }
+  }
+
+
 
   // =============================================
   // ============= START
@@ -102,6 +112,8 @@ module.exports = (address, branch) => {
   execCmd(cmds, 'copy_to_framework');
 
   execCmd(cmds, 'merge_dependencies');
+
+  copyFrameworkPublic();
   // done
   done();
 
