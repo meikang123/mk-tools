@@ -1,6 +1,6 @@
 {
   "name": "giant-tools",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "giant scaffold cli",
   "main": "index.js",
   "bin": {
@@ -25,7 +25,8 @@
     "jsonfile": "^5.0.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.27.0",
-    "ora": "^3.1.0"
+    "ora": "^3.1.0",
+    "validate-npm-package-name": "^3.0.0"
   },
   "author": "stone",
   "license": "ISC",

@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 const program = require('commander');
-const { init, listScaffolds, release, downloadFramework, listFrameworks, clone } = require('./src/command');
+const { init, create, listScaffolds, release, downloadFramework, listFrameworks, clone } = require('./src/command');
 const chalk = require('chalk');
 const pkg = require('./package.json');
 
@@ -10,6 +10,10 @@ program.command('download').action(() => {
 
 program.command('init <scaffoldaddress>').action((scaffoldaddress) => {
   init(scaffoldaddress);
+});
+
+program.command('create <app-name>').action((appName, cmd) => {
+  create(appName, cmd);
 });
 
 program.command('release <environment>').action((branch) => {
