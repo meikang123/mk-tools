@@ -5,6 +5,8 @@
 'use strict';
 const fs = require('fs-extra');
 const { execCmd } = require('./utils');
+const jsonFile = require('jsonfile');
+const path = require('path');
 
 /**
  * @description 根据脚手架仓库地址初始化项目
@@ -40,6 +42,19 @@ module.exports = (address, branch) => {
       command: () => fs.copySync('./framework_temp_/framework/', './src/framework/'),
       info: '> copy framework_temp_/* to src/framework/ success!',
     },
+    merge_dependencies: {
+      command: () => {
+        const packageJsonPath = path.join(process.cwd(), './package.json');
+        const packageJson = jsonFile.readFileSync(packageJsonPath);
+        const frameWorkDependencies = jsonFile.readFileSync(path.join(process.cwd(), './src/framework/dependencies.json'));
+        packageJson.dependencies = {
+          ...packageJson.dependencies,
+          ...frameWorkDependencies
+        }
+        jsonFile.writeFileSync(packageJsonPath, packageJson, { spaces: 2 });
+      },
+      info: '> merge dependencies'
+    }
   };
 
   // () => fs.copySync('./scaffold_temp_/.', './'),
@@ -60,6 +75,17 @@ module.exports = (address, branch) => {
       execCmd(cmds, 'rm_dir'); 
     }
   };
+
+  async function copyFrameworkPublic () {
+    try {
+      console.log('> copy frameworkpublic');
+      await fs.copy('./src/framework/public/static/framework', './public/static/framework');
+    }catch(e){
+      console.error(e);
+    }
+  }
+
+
 
   // =============================================
   // ============= START
@@ -85,6 +111,9 @@ module.exports = (address, branch) => {
   // 复制 framework_temp_/framework/ 内容到 src/framework 目录
   execCmd(cmds, 'copy_to_framework');
 
+  execCmd(cmds, 'merge_dependencies');
+
+  copyFrameworkPublic();
   // done
   done();
 

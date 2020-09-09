@@ -3,7 +3,6 @@
  *
  */
 const { execSync } = require('child_process');
-
 /**
 * 获取数据类型
 * */
@@ -38,14 +37,6 @@ const execCmd = (cmds, cmdKey) => {
 };
 
 
-  /**
-   * @description 从package中读取json文件
-   */
-const getPackageJsonFromProject = () => {
-  console.log('getPackageJsonFromProject');
-};
-
 module.exports = {
   execCmd,
-  getPackageJsonFromProject,
 };
