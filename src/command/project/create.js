@@ -2,7 +2,7 @@ const fs = require('fs-extra')
 const path = require('path')
 const inquirer = require('inquirer')
 const validateProjectName = require('validate-npm-package-name')
-const creator = require('./../../lib/Creator')
+const creator = require('./../../lib/creator')
 
 async function create(projectName, options) {
   const cwd = options.cwd || process.cwd();

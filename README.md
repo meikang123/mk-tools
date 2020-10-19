@@ -26,6 +26,14 @@ giant list
 # 项目初始化
 giant init
 ```
+
+创建后台管理框架
+```shell
+# 项目初始化
+giant create appName // 会创建appName文件夹
+giant create . // 当前目录创建项目
+```
+
 项目根目录下执行，同步公用代码到业务项目，同步公用依赖到业务依赖
 ```shell
 # 同步指定公用代码
@@ -46,7 +54,7 @@ package.json
 项目根目录下执行，发布项目到资源包
 ```shell
 # 发布项目到资源包
-giant release
+giant release master -m 版本描述
 ```
 业务项目中发布代码指定方式
 

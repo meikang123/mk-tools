@@ -5,7 +5,7 @@ const { releaseHandle } = require('../../lib');
 const jsonFile = require('jsonfile');
 const path = require('path');
 
-module.exports = (branch) => {
+module.exports = (branch, options) => {
   const currentPath = process.cwd();
   const projectPackage = jsonFile.readFileSync(path.join(currentPath, './package.json'));
   const { release, name } = projectPackage;
@@ -22,5 +22,5 @@ module.exports = (branch) => {
 
   const { address, dirname } = release;
 
-  releaseHandle(address, branch, dirname, name);
+  releaseHandle(address, branch, dirname, name, options);
 };

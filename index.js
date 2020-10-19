@@ -16,8 +16,9 @@ program.command('create <app-name>').action((appName, cmd) => {
   create(appName, cmd);
 });
 
-program.command('release <environment>').action((branch) => {
-  release(branch);
+program.command('release <branch>').option('-m, --desc <descMessage>', 'Version described').action((branch, cmd) => {
+  const options = cleanArgs(cmd)
+  release(branch, options);
 });
 
 program.command('list').action(() => {
@@ -53,3 +54,20 @@ program.on('--help', () => {
 });
 
 program.parse(process.argv);
+
+function camelize (str) {
+  return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')
+}
+
+function cleanArgs (cmd) {
+  const args = {}
+  cmd.options.forEach(o => {
+    const key = camelize(o.long.replace(/^--/, ''))
+    // if an option is not present and Command has a method with the same name
+    // it should not be copied
+    if (typeof cmd[key] !== 'function' && typeof cmd[key] !== 'undefined') {
+      args[key] = cmd[key]
+    }
+  })
+  return args
+}

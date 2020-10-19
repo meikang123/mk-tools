@@ -15,8 +15,9 @@ const { execCmd } = require('./utils');
  * @param {String} branch 发布分支
  * @param {String} dirname 压缩文件地址
  * @param {String} name 项目名称
+ * @param {Object} options 额外描述
  */
-module.exports = async (address, branch, dirname, name) => {
+module.exports = async (address, branch, dirname, name, options = {}) => {
 
   const cmds = {
     rm_dir: {
@@ -30,6 +31,18 @@ module.exports = async (address, branch, dirname, name) => {
     clone_repo: {
       command: `git clone -b ${branch} ${address} publish_temp_`,
       info: '> clone publish codes success!',
+    },
+    clear_file: {
+      command: () => {
+        let files = fs.readdirSync(`./publish_temp_/${name}/`);
+        files.splice(-10);
+        files.forEach(file => {
+          /*const time = file.split(' ')[0];
+          if(time && new Date(time).getTime() < Date.now() - 1000 * 3600 * 24 * 10)*/
+          fs.removeSync(`./publish_temp_/${name}/${file}`);
+        })
+      },
+      info: '> clear file success!',
     },
     pro_build: {
       command: `npm run build:${branch}`,
@@ -61,7 +74,8 @@ module.exports = async (address, branch, dirname, name) => {
   const zipName = (() => {
     let versionName = name;
     if(branch === 'master') versionName = moment().format("YYYY-MM-DD HH_mm_ss");
-    return `./publish_temp_/${name}/${versionName}.zip`
+    const desc = options.desc ? `-${options.desc}` : '';
+    return `./publish_temp_/${name}/${versionName}${desc}.zip`
   })();
 
   const zipFile = () => {
@@ -81,9 +95,6 @@ module.exports = async (address, branch, dirname, name) => {
     });
   }
 
-
-  console.log(branch, address);
-
   // 初始化
   delFile();
 
@@ -92,6 +103,9 @@ module.exports = async (address, branch, dirname, name) => {
 
   // 克隆 release_package 仓库代码到 publish_temp_ 目录
   execCmd(cmds, 'clone_repo');
+
+  // 清理历史文件
+  if(branch === 'master' && fs.existsSync(`./publish_temp_/${name}`)) execCmd(cmds, 'clear_file');
 
   // 打包项目
   execCmd(cmds, 'pro_build');
